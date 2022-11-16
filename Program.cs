@@ -18,22 +18,40 @@
 // M = 1; N = 15-> 120
 // M = 4; N = 8. -> 30
 
+// Console.WriteLine("Введите число M");
+// int M = int.Parse(Console.ReadLine()!);
+// Console.WriteLine("Введите число N ,больше числа M");
+// int N = int.Parse(Console.ReadLine()!);
+// Console.WriteLine(Func2(M, N));
+// int Func2(int m, int n)
+// {
+//     if (m == n)
+//     {
+//         return m;
+//     }
+//     else if ((n-m)==1){
+//         return n+m;
+//     }
+//     else
+//     {
+//         return m + n + Func2(m + 1, n - 1);
+//     }
+// }
+
+
+// Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+// m = 2, n = 3->A(m, n) = 9
+// m = 3, n = 2->A(m, n) = 29
 Console.WriteLine("Введите число M");
 int M = int.Parse(Console.ReadLine()!);
-Console.WriteLine("Введите число N ,больше числа M");
+Console.WriteLine("Введите число N");
 int N = int.Parse(Console.ReadLine()!);
-Console.WriteLine(Func2(M, N));
-int Func2(int m, int n)
+Console.WriteLine($"Функция Аккермана A({M},{N}) = {AckFunc(M, N)}");
+
+int AckFunc(int m, int n)
 {
-    if (m == n)
-    {
-        return m;
-    }
-    else if ((n-m)==1){
-        return n+m;
-    }
-    else
-    {
-        return m + n + Func2(m + 1, n - 1);
-    }
+    if (m == 0) return n + 1;
+    if (m != 0 && n == 0) return AckFunc(m - 1, 1);
+    if (m > 0 && n > 0) return AckFunc(m - 1, AckFunc(m, n - 1));
+    return AckFunc(m, n);
 }
